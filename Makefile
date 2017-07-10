@@ -32,18 +32,18 @@ MLX_MAC 	= $(MLX_CAP)/$(MLX_A)
 MLX_C_ALL 	= $(MLX_MAC) -framework OpenGL -framework Appkit
 
 LIB_M_ALL 	= $(LIBFT_ALL) $(MLX_C_ALL)
-SRCS	=			main.c \
+SRCS		= main.c \
 
 INCLUDE 	=  -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
-OBJ		=	${SRCS:.c=.o}
+OBJ			=	${SRCS:.c=.o}
 
 all: $(NAME)
 
 #recompiling the libraries is turned off now for speed
 $(NAME): $(OBJ)
-		#@make -C libft
+		# @make -C libft
 		@echo "\033[32mCompiled libft\033[0m"
-		#@make -C $(MLX_CAP)
+		# @make -C $(MLX_CAP)
 		@echo "\033[32mCompiled mlx_macros\033[0m"
 		@$(CC) $(CCFLAGS) $(INCLUDE) $(OBJ) -o $(NAME)
 
@@ -51,13 +51,13 @@ $(NAME): $(OBJ)
 
 clean:
 	@/bin/rm -f $(OBJ)
-	#@make -C libft clean
-	#@make -C $(MLX_CAP) clean
+	# @make -C libft clean
+	# @make -C $(MLX_CAP) clean
 	@echo "\033[31;1m Libraries cleaned\033[0m"
 
 fclean: clean
-	#@make -C libft fclean
-	#@make -C $(MLX_CAP) clean
+	# @make -C libft fclean
+	# @make -C $(MLX_CAP) clean
 	@rm -f $(NAME)
 	@echo "\033[31;1m$(NAME) and libraries fcleaned\033[0m"
 
