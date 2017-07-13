@@ -20,7 +20,7 @@ CC 			= gcc
 AR 			= AR
 
 CCFLAGS 	= -Wall -Wextra -Werror
-INC 		= ./fdf.h
+INC 		= ./includes/fdf.h
 
 LIBFT 		= ./libft
 LIBFT_A 	= libft.a
@@ -33,6 +33,8 @@ MLX_C_ALL 	= $(MLX_MAC) -framework OpenGL -framework Appkit
 
 LIB_M_ALL 	= $(LIBFT_ALL) $(MLX_C_ALL)
 SRCS		= main.c \
+			parsing.c \
+			storing.c \
 
 INCLUDE 	=  -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 OBJ			=	${SRCS:.c=.o}

@@ -6,7 +6,7 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 14:57:35 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/09 18:57:30 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/12 18:46:03 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,48 @@
 # define FDF_H
 
 #include <unistd.h>
-# include "libft/libft.h"
-# include "minilibx_macos/mlx.h"
+#include <stdlib.h>
+#include <stdio.h>
+# include "../libft/libft.h"
+# include "../minilibx_macos/mlx.h"
 
-typedef	struct		s_bresen
+typedef struct		s_env
 {
-	float			offset;
-	float			threshold;
-	float			adjust;
-	float			delta;
-	float			tmp;
-	int				colorgrade;
-	float			color;
-	float			range;
-	char			*str;
-	char			**coord;
-	char			*line;
-}					t_bresen;
+	void			*mlx;
+	void			*win;
+}					t_env;
 
+typedef struct		s_map
+{
+	int				**map;
+	int				height_min;
+	int				height_max;
+	int				width;
+	int				height;
+	int				mid_x;
+	int				mid_y;
+}					t_map;
+
+typedef struct		s_points
+{
+	float			x;
+	float			y;
+	float			z;
+}					t_points;
+
+
+
+//		Parsing
+int					parse(char *argument);
+int					error(char *str);
+
+//		Storing
+int					find_width(char **coord);
+void				find_width_heigth(int fd, t_map *in_map);
+void				storing(char *argument, t_map *in_map);
+
+//		Bullshit
+void				linebres_negative(int x0, int y0, int x1, int y1);
+void				linebres_positive(int x0, int y0, int x1, int y1);
 
 #endif
