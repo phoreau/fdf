@@ -6,7 +6,7 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 13:35:03 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/12 20:48:55 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/13 19:34:43 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,13 @@ void	find_width_heigth(int fd, t_map *in_map)
 	char	**coord;
 
 	y = 0;
-	// read the first line, strsplit it with all the spaces so there will be a double array of each line
-	if (get_next_line(fd, &line))
+	while ((get_next_line(fd, &line)) > 0)
 	{
-		y++;
 		coord = ft_strsplit(line, ' ');
-		// we find the width of the whole map by getting the first
 		in_map->width = find_width(coord);
-		// we free our values so it won't overwrite or do shit
-		free(coord);
-		free(line);
 	}
-	// after we read the first line, so it with all the line until the last one
-	while (get_next_line(fd, &line))
-	{
-		//we increment y to find the length / height of the map
-		y++;
-		free(line);
-	}
-	// we close the file
+	free(coord);
+	free(line);
 	close(fd);
 }
 

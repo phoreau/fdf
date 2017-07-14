@@ -43,7 +43,7 @@ all: $(NAME)
 
 #recompiling the libraries is turned off now for speed
 $(NAME): $(OBJ)
-		# @make -C libft
+		@make -C libft
 		@echo "\033[32mCompiled libft\033[0m"
 		# @make -C $(MLX_CAP)
 		@echo "\033[32mCompiled mlx_macros\033[0m"
@@ -53,12 +53,12 @@ $(NAME): $(OBJ)
 
 clean:
 	@/bin/rm -f $(OBJ)
-	# @make -C libft clean
+	@make -C libft clean
 	# @make -C $(MLX_CAP) clean
 	@echo "\033[31;1m Libraries cleaned\033[0m"
 
 fclean: clean
-	# @make -C libft fclean
+	@make -C libft fclean
 	# @make -C $(MLX_CAP) clean
 	@rm -f $(NAME)
 	@echo "\033[31;1m$(NAME) and libraries fcleaned\033[0m"
