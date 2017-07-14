@@ -6,7 +6,7 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 13:35:03 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/14 11:53:03 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/14 13:19:35 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		*get_values(char **s, int width)
 void	find_z_value(int fd, t_map *in_map)
 {
 	int		x;
-	// int		i;
-	char	**coord;
+	int		i;
 	char	*line;
+	char 	**coord;
 
 	x = 0;
 	in_map->height_max = 0;
@@ -46,12 +46,15 @@ void	find_z_value(int fd, t_map *in_map)
 		in_map->map[x] = get_values(coord, in_map->width);
 		free(coord);
 		free(line);
-		// i = 0;
-		// while (i < in_map->width)
-		// {
-
-		// 	i++;
-		// }
+		i = 0;
+		while (i < in_map->width)
+		{
+			if (in_map->map[x][i] > in_map->height_max)
+				in_map->height_max = in_map->map[x][i];
+			else
+				in_map->height_max = in_map->height_max;
+			i++;
+		}
 	}
 	close(fd);
 }
@@ -86,6 +89,7 @@ void	find_width_heigth(int fd, t_map *in_map)
 void	storing(char *argument, t_map *in_map)
 {
 	int		fd;
+
 
 	if ((fd = open(argument, O_RDONLY)) == -1)
 		error("Error Opening");

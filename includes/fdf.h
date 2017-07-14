@@ -6,7 +6,7 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 14:57:35 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/12 18:46:03 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/14 13:19:33 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int					error(char *str);
 int					find_width(char **coord);
 void				find_width_heigth(int fd, t_map *in_map);
 void				storing(char *argument, t_map *in_map);
+void				find_z_value(int fd, t_map *in_map);
 
 //		Bullshit
 void				linebres_negative(int x0, int y0, int x1, int y1);
