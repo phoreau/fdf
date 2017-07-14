@@ -35,6 +35,7 @@ LIB_M_ALL 	= $(LIBFT_ALL) $(MLX_C_ALL)
 SRCS		= main.c \
 			parsing.c \
 			storing.c \
+			prepare_variables.c \
 
 INCLUDE 	=  -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 OBJ			=	${SRCS:.c=.o}

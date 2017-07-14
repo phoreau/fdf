@@ -6,7 +6,7 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 14:57:35 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/14 13:19:33 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/14 15:21:12 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
+					// gap;
+					// m;
+					
+					// cart;
+					// j;
+					// i;
+
 }					t_env;
 
 typedef struct		s_map
@@ -43,11 +50,9 @@ typedef struct		s_points
 	float			z;
 }					t_points;
 
-
-
 //		Parsing
 int					parse(char *argument);
-int					error(char *str);
+void				error(int x);
 
 //		Storing
 int					find_width(char **coord);
