@@ -1,13 +1,16 @@
-#include "./includes/fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phoreau <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/18 16:38:48 by phoreau           #+#    #+#             */
+/*   Updated: 2017/07/18 16:38:51 by phoreau          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		key_hook(int keycode, t_env *e)
-{
-	ft_putstr("Keyevent: ");
-	ft_putendl(ft_itoa(keycode));
-	if (keycode == 53)
-		exit(0);
-	return (0);
-}
+#include "./includes/fdf.h"
 
 void linebres_negative(int x0, int y0, int x1, int y1)
 {
@@ -46,7 +49,6 @@ void linebres_negative(int x0, int y0, int x1, int y1)
 		}
 		mlx_pixel_put(e.mlx, e.win, x, y, 0x00FF0000);
 	}
-	mlx_key_hook(e.win, key_hook, &e);
 	mlx_loop(e.mlx);
 }
 
@@ -87,6 +89,6 @@ void linebres_positive(int x0, int y0, int x1, int y1)
 		}
 		mlx_pixel_put(e.mlx, e.win, x, y, 0x00FF0000);
 	}
-	mlx_key_hook(e.win, key_hook, &e);
 	mlx_loop(e.mlx);
 }
+

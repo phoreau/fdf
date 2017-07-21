@@ -6,7 +6,7 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 14:06:45 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/14 17:25:26 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/18 16:43:30 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ int		main(int ac, char **av)
 		error(0);
 	if (!(in_map = (t_map *)malloc(sizeof(t_map))))
 		error(0);
-	parse(av[1]);
-	storing(av[1], in_map);
-	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, 600, 600, "FDF");
+
+	// coords = get_data(fd, e.mlx, e.win);
+	// begin(coords);
+	// clear_data(coords, 0);
+
 	mlx_key_hook(e.win, key_hook, &e);
 	mlx_loop(e.mlx);
 	return (0);

@@ -6,29 +6,34 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 13:35:03 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/14 15:21:44 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/14 16:10:28 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fdf.h"
 
-int		*get_all_values(char **s, int width)
+int		*get_z_values(char **s, int width)
 {
 	int		*map;
-	int		j;
+	int		i;
 
-	j = 0;
+	i = 0;
 	map = (int *)malloc(sizeof(int) * (width + 1));
-	while (j < width)
+	while (i < width)
 	{
-		map[j] = ft_atoi(s[j]);
-		printf("[%2d]", map[j]);
-		j++;
+		map[i] = ft_atoi(s[i]);
+		printf("[%2d]", map[i]);
+		i++;
 	}
 	printf("\n");
 	return (map);
 }
 
+/*
+** we need to find the z value (let's say altitude)of each spot wether it's 0
+** or 1 or 100. so we go through our get next line again and we strsplit to
+** find get the values of each spot.
+*/
 void	find_z_value(int fd, t_map *in_map)
 {
 	int		x;
@@ -43,7 +48,7 @@ void	find_z_value(int fd, t_map *in_map)
 	while (get_next_line(fd, &line))
 	{
 		coord = ft_strsplit(line, ' ');
-		in_map->map[x] = get_all_values(coord, in_map->width);
+		in_map->map[x] = get_z_values(coord, in_map->width);
 		free(coord);
 		free(line);
 		i = 0;
@@ -69,6 +74,10 @@ int		find_width(char **coord)
 	return (x);
 }
 
+/*
+** we increment y to get the height
+** and we call the find width function by incrementing x
+*/
 void	find_width_heigth(int fd, t_map *in_map)
 {
 	int		y;

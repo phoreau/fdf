@@ -6,7 +6,7 @@
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 14:57:35 by phoreau           #+#    #+#             */
-/*   Updated: 2017/07/14 18:27:06 by phoreau          ###   ########.fr       */
+/*   Updated: 2017/07/18 14:35:59 by phoreau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # define KEY_RIGHT	124
 # define KEY_UP		126
 
+# ifndef ERRS
+#  define ERR(a, b) if(a){return(b);}
+#  define ERR1(a, b, c) if(a){b;return(c);}
+#  define ERR2(a, b, c, d) if(a){b;c;return(d);}
+#  define ERR3(a, b, c, d, e) if(a){b;c;d;return(e);}
+#  define ERR4(a, b, c, d, e, f) if(a){b;c;d;e;return(f);}
+# endif
+
 typedef struct		s_points
 {
 	float			x;
@@ -37,10 +45,10 @@ typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
-	float			y1;
-	float			x1;
-	float			x2;
-	float			y2;
+	int				y1;
+	int				x1;
+	int				x2;
+	int				y2;
 	int				hmin;
 	int				hmax;
 	int				w;
@@ -78,6 +86,7 @@ void				storing(char *argument, t_map *in_map);
 
 //		Bullshit
 void				linebres_negative(int x0, int y0, int x1, int y1);
+// void				linebres_positive(t_env *points);
 void				linebres_positive(int x0, int y0, int x1, int y1);
 
 #endif
