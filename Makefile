@@ -19,7 +19,7 @@ MLX_PATH	= ./minilibx_macos/
 CC 			= gcc
 AR 			= AR
 
-CCFLAGS 	= -Wall -Wextra -Werror
+CCFLAGS 	= -g -Wall -Wextra -Werror
 INC 		= ./includes/fdf.h
 
 LIBFT 		= ./libft
@@ -33,12 +33,14 @@ MLX_C_ALL 	= $(MLX_MAC) -framework OpenGL -framework Appkit
 
 LIB_M_ALL 	= $(LIBFT_ALL) $(MLX_C_ALL)
 SRCS		= main.c \
-			parsing.c \
-			storing.c \
-			prepare_variables.c \
-			test.c \
+			parse.c \
+			store.c \
+			draw.c \
+			start.c \
+			grid.c \
+			environment.c \
 
-INCLUDE 	=  -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+INCLUDE 	=   -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 OBJ			=	${SRCS:.c=.o}
 
 all: $(NAME)
@@ -49,7 +51,7 @@ $(NAME): $(OBJ)
 		@echo "\033[32mCompiled libft\033[0m"
 		# @make -C $(MLX_CAP)
 		@echo "\033[32mCompiled mlx_macros\033[0m"
-		@$(CC) $(CCFLAGS) $(INCLUDE) $(OBJ) -o $(NAME)
+		$(CC) $(CCFLAGS) $(INCLUDE) $(OBJ) -o $(NAME)
 
 		@echo "\033[34;1mFDF created\n\033[0m"
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   grid.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,36 @@
 
 #include "./includes/fdf.h"
 
-void	error(int x)
+// void	draw_grid(t_data *map)
+// {
+// 	int x = 50;
+// 	int y = 50;
+
+// 	while (y <= 400)
+// 	{
+// 		x = 50;
+// 		while (x <= 400)
+// 		{
+// 			line_negative(map, x, y, x + 50, y);
+// 			vertical_line(map, x, y, x, y + 50);
+// 			x += 50;
+// 		}
+// 		y += 50;
+// 	}
+// }
+
+void	draw_grid(t_data *info, t_map *map)
 {
-	if (x == 0)
+	while (info->y <= info->height)
 	{
-		ft_putstr("non\n");
-		exit(1);
+		info->x = 50;
+		while (info->x <= info->width)
+		{
+			// line_negative(info, x, y, x + 50, y);
+			line_negative(info, info->x, info->y, info->x + 50, info->y);
+			vertical_line(info, info->x, info->y, info->x, info->y + 50);
+			info->x += 50;
+		}
+		info->y += 50;
 	}
-	if (x == 1)
-		exit(1);
-}
-
-int		main(int ac, char **av)
-{
-	t_data		*coords;
-	t_map		*map;
-
-	if (ac != 2)
-		error(0);
-	// parse
-	if (!(map = (t_map *)malloc(sizeof(t_map))))
-		error(0);
-	storing(av[1], map);
-	coords = get_info(map);
-	start(coords, map);
-	return (0);
 }

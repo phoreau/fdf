@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,19 @@
 
 #include "./includes/fdf.h"
 
-void	error(int x)
+int		keyboard(int keycode)
 {
-	if (x == 0)
-	{
-		ft_putstr("non\n");
-		exit(1);
-	}
-	if (x == 1)
-		exit(1);
+	ft_putstr("Keyevent: ");
+	ft_putendl(ft_itoa(keycode));
+	if (keycode == KEY_ESCAPE)
+		exit(0);
+	return (0);
 }
 
-int		main(int ac, char **av)
+int		start(t_data *coords, t_map *map)
 {
-	t_data		*coords;
-	t_map		*map;
-
-	if (ac != 2)
-		error(0);
-	// parse
-	if (!(map = (t_map *)malloc(sizeof(t_map))))
-		error(0);
-	storing(av[1], map);
-	coords = get_info(map);
-	start(coords, map);
+	draw_grid(coords, map);
+	mlx_hook(coords->win, 2, 3, keyboard, coords);
+	mlx_loop(coords->mlx);
 	return (0);
 }
