@@ -12,36 +12,18 @@
 
 #include "./includes/fdf.h"
 
-// void	draw_grid(t_data *map)
+// void	draw_grid(t_data *info, t_map *map)
 // {
-// 	int x = 50;
-// 	int y = 50;
-
-// 	while (y <= 400)
+// 	info->y = 0;
+// 	while (info->y <= HEIGHT - 150)
 // 	{
-// 		x = 50;
-// 		while (x <= 400)
+// 		info->x = 0;
+// 		while (info->x <= WIDTH - 150)
 // 		{
-// 			line_negative(map, x, y, x + 50, y);
-// 			vertical_line(map, x, y, x, y + 50);
-// 			x += 50;
+// 			line_negative(info, info->x, info->y, info->x + 50, info->y);
+// 			vertical_line(info, info->x, info->y, info->x, info->y + 50);
+// 			info->x += 50;
 // 		}
-// 		y += 50;
+// 		info->y += 50;
 // 	}
 // }
-
-void	draw_grid(t_data *info, t_map *map)
-{
-	while (info->y <= info->height)
-	{
-		info->x = 50;
-		while (info->x <= info->width)
-		{
-			// line_negative(info, x, y, x + 50, y);
-			line_negative(info, info->x, info->y, info->x + 50, info->y);
-			vertical_line(info, info->x, info->y, info->x, info->y + 50);
-			info->x += 50;
-		}
-		info->y += 50;
-	}
-}

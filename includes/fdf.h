@@ -21,8 +21,8 @@
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
 
-#define				HEIGHT 750
-#define				WIDTH 1080
+#define				HEIGHT 		750
+#define				WIDTH 		1080
 
 # define 			KEY_ESCAPE	53
 # define 			KEY_ENTER	36
@@ -34,19 +34,29 @@
 typedef struct		s_map
 {
 	int				**map;
-	int				width;
-	int				height;
-	int				height_min;
-	int				height_max;
+	int				w;
+	int				h;
+	int				h_min;
+	int				h_max;
 	int				mid_x;
 	int				mid_y;
+	//float			xpixelloc;
+	//float			ypixelloc;
 }					t_map;
 
-typedef struct		s_data
+typedef struct 		s_points
 {
 	float			x;
 	float			y;
 	float			z;
+}					t_points;
+
+typedef struct		s_data
+{
+	t_points		**cart;
+	int				x;
+	int				y;
+	int				z;
 	float			x1;
 	float			x2;
 	float			y1;
@@ -55,10 +65,11 @@ typedef struct		s_data
 	float			z2;
 	int				i;
 	int				j;
-	int				width;
-	int				height;
-	int				height_min;
-	int				height_max;
+	int				w; // width
+	int				h; // height
+	int				h_min; // height_min
+	int				h_max;	// height_max
+	int				gap;
 	void			*mlx;
 	void			*win;
 }					t_data;

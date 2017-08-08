@@ -42,22 +42,22 @@ void	find_z_value(int fd, t_map *in_map)
 	char 	**coord;
 
 	x = 0;
-	in_map->height_max = 0;
-	in_map->height_min = 0;
-	in_map->map = (int **)malloc(sizeof(int *) * (in_map->height + 1));
+	in_map->h_max = 0;
+	in_map->h_min = 0;
+	in_map->map = (int **)malloc(sizeof(int *) * (in_map->h + 1));
 	while (get_next_line(fd, &line))
 	{
 		coord = ft_strsplit(line, ' ');
-		in_map->map[x] = get_z_values(coord, in_map->width);
+		in_map->map[x] = get_z_values(coord, in_map->w);
 		free(coord);
 		free(line);
 		i = 0;
-		while (i < in_map->width)
+		while (i < in_map->w)
 		{
-			if (in_map->map[x][i] > in_map->height_max)
-				in_map->height_max = in_map->map[x][i];
+			if (in_map->map[x][i] > in_map->h_max)
+				in_map->h_max = in_map->map[x][i];
 			else
-				in_map->height_max = in_map->height_max;
+				in_map->h_max = in_map->h_max;
 			i++;
 		}
 	}
@@ -89,9 +89,9 @@ void	find_width_heigth(int fd, t_map *in_map)
 	{
 		y++;
 		coord = ft_strsplit(line, ' ');
-		in_map->width = find_width(coord);
+		in_map->w = find_width(coord);
 	}
-	in_map->height = y;
+	in_map->h = y;
 	free(coord);
 	free(line);
 	close(fd);
