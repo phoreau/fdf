@@ -21,10 +21,10 @@ int		keyboard(int keycode)
 	return (0);
 }
 
-int		start(t_data *coords, t_map *map)
+int		start(t_data *info)
 {
-	draw_grid(coords, map);
-	mlx_hook(coords->win, 2, 3, keyboard, coords);
-	mlx_loop(coords->mlx);
+	draw(info);
+	mlx_key_hook(info->win, keyboard, 0);
+	mlx_loop(info->mlx);
 	return (0);
 }

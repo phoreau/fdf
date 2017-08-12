@@ -13,27 +13,25 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <stdio.h> // REMOVE AT THE END //
-# include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 # include "../libft/libft.h"
+# include "macros.h"
 # include "../minilibx_macos/mlx.h"
 
-#define				HEIGHT 		750
-#define				WIDTH 		1080
-
-# define 			KEY_ESCAPE	53
-# define 			KEY_ENTER	36
-# define 			KEY_LEFT	123
-# define 			KEY_DOWN	125
-# define 			KEY_RIGHT	124
-# define 			KEY_UP		126
+/*
+** ++++++++++++++++++++++++++++++++++++++++++
+** +										+
+** +			S T R U C T S				+
+** +										+
+** ++++++++++++++++++++++++++++++++++++++++++
+*/
 
 typedef struct		s_map
 {
 	int				**map;
+	int				j;
 	int				w;
 	int				h;
 	int				h_min;
@@ -44,19 +42,28 @@ typedef struct		s_map
 	//float			ypixelloc;
 }					t_map;
 
+typedef struct 		s_values
+{
+	float			offset;
+	float			threshold;
+	float			adjust;
+	float			delta;
+}					t_values;
+
 typedef struct 		s_points
 {
 	float			x;
 	float			y;
 	float			z;
+	float			rawz;
 }					t_points;
 
 typedef struct		s_data
 {
 	t_points		**cart;
-	int				x;
-	int				y;
-	int				z;
+	double				x;
+	double				y;
+	double				z;
 	float			x1;
 	float			x2;
 	float			y1;
@@ -70,28 +77,45 @@ typedef struct		s_data
 	int				h_min; // height_min
 	int				h_max;	// height_max
 	int				gap;
+	int				cur_z;
+	int				next_z;
+	float			rise;
+	float			run;
+	float			slope; // slope
+	float			e;
 	void			*mlx;
 	void			*win;
 }					t_data;
 
-int					start(t_data *coords, t_map *map);
+/*
+** ++++++++++++++++++++++++++++++++++++++++++
+** +										+
+** +			F U N C T I O N S			+
+** +										+
+** ++++++++++++++++++++++++++++++++++++++++++
+*/
 
-//		Parsing
+int					start(t_data *coords);
+
 int					parse(char *argument);
 void				error(int x);
 
-//		Storing
 int					find_width(char **coord);
-void				find_width_height_and_z(int fd, t_map *in_map);
-void				storing(char *argument, t_map *in_map);
+void				find_width_height_and_z(int fd, t_map *map);
+void				storing(char *argument, t_map *map);
 
-//		Bresenham
 void				line_negative(t_data *env, int x0, int y0, int x1, int y1);
 void				line_positive(t_data *env, int x0, int y0, int x1, int y1);
 
-//		Bullshit
-void				draw_grid(t_data *info, t_map *map);
+void				draw(t_data *info);
 void				vertical_line(t_data *e, int x0, int y0, int x1, int y1);
 t_data				*get_info(t_map *map);
+void				rotate(t_data *info);
+void				slope_gradual(t_data *info, t_values *values);
+void				slope_sharp(t_data *info, t_values *values);
+void				slope_straight(t_data *info);
+void 				going_on_x(t_data *info);
+void 				going_on_y(t_data *info);
+void				bres_line(t_data *info);
 
 #endif

@@ -14,26 +14,29 @@
 
 t_points		**take_in_pts(t_data *data, t_map *map)
 {
+	int			i;
+	int			j;
 	t_points	**p;
 
-	if (!(p = (t_points **)malloc(sizeof(t_points *) * (map->h + 1))))
-		return (NULL);
 	map->mid_x = map->w / 2;
 	map->mid_y = map->h / 2;
-	while (data->y < map->h)
+	if (!(p = (t_points **)malloc(sizeof(t_points *) * (map->h + 1))))
+		return (NULL);
+	j = 0;
+	while (j < map->h)
 	{
-		p[data->y] = (t_points *)malloc(sizeof(t_points) * (map->w + 1));
-		data->x = 0;
-		while (data->x < map->w)
+		i = 0;
+		p[j] = (t_points *)malloc(sizeof(t_points) * (map->w + 1));
+		while (i < map->w)
 		{
-			p[data->y][data->x].x = ((data->x - map->mid_x) * (data->gap));
-			p[data->y][data->x].y = ((data->x - map->mid_y) * (data->gap));
-			p[data->y][data->x].z = map->map[data->y][data->x];
-			data->x++;
+			p[j][i].x = (i - map->mid_x) * (data->gap);
+			p[j][i].y = (j - map->mid_y) * (data->gap);
+			p[j][i].z = map->map[j][i];
+			i++;
 		}
-		data->y++;
+		j++;
 	}
-	p[data->y] = NULL;
+	p[j] = NULL;
 	return (p);
 }
 
@@ -47,14 +50,12 @@ void		my_data(t_data **data, t_map *map)
 	(*data)->h_min = 0;
 	(*data)->w = map->w;
 	(*data)->h = map->h;
-	(*data)->gap = map->w > map->h ? 750 / (map->w) : 750 / (map->h);
-	/* if w > h
-			gap = 750 / w;
-		else
-			gap = 750 / h;
-	*/
-	(*data)->x = 0;
-	(*data)->y = 0;
+	(*data)->gap = map->w > map->h ? HEIGHT / map->w : HEIGHT / (map->h);
+	(*data)->slope = 0;
+	(*data)->rise = 0;
+	(*data)->run = 0;
+	(*data)->i = 0;
+	(*data)->j = 0;
 	(*data)->cart = take_in_pts(*data, map);
 	(*data)->mlx = mlx_init();
 	(*data)->win = mlx_new_window((*data)->mlx, WIDTH, HEIGHT, "fdf");

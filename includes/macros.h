@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.c                                             :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#ifndef MACROS_H
+# define MACROS_H
 
-// void	draw_grid(t_data *info, t_map *map)
-// {
-// 	info->y = 0;
-// 	while (info->y <= HEIGHT - 150)
-// 	{
-// 		info->x = 0;
-// 		while (info->x <= WIDTH - 150)
-// 		{
-// 			line_negative(info, info->x, info->y, info->x + 50, info->y);
-// 			vertical_line(info, info->x, info->y, info->x, info->y + 50);
-// 			info->x += 50;
-// 		}
-// 		info->y += 50;
-// 	}
-// }
+# include "fdf.h"
+
+/*
+** ++++++++++++++++++++++++++++++++++++++
+** +									+
+** +			M A C R O S				+
+** +									+
+** ++++++++++++++++++++++++++++++++++++++
+*/
+
+#define				HEIGHT 		750
+#define				WIDTH 		1080
+
+# define 			MLX 		info->mlx
+# define 			WIN 		info->win
+
+# define 			KEY_ESCAPE	53
+# define 			KEY_ENTER	36
+# define 			KEY_LEFT	123
+# define 			KEY_DOWN	125
+# define 			KEY_RIGHT	124
+# define 			KEY_UP		126
+
+#endif

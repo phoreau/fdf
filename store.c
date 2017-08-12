@@ -34,7 +34,7 @@ int		*get_z_values(char **s, int width)
 ** or 1 or 100. so we go through our get next line again and we strsplit to
 ** find get the values of each spot.
 */
-void	find_z_value(int fd, t_map *in_map)
+void	find_z_value(int fd, t_map *m)
 {
 	int		x;
 	int		i;
@@ -42,24 +42,23 @@ void	find_z_value(int fd, t_map *in_map)
 	char 	**coord;
 
 	x = 0;
-	in_map->h_max = 0;
-	in_map->h_min = 0;
-	in_map->map = (int **)malloc(sizeof(int *) * (in_map->h + 1));
+	m->h_max = 0;
+	m->h_min = 0;
+	m->map = (int **)malloc(sizeof(int *) * (m->h + 1));
 	while (get_next_line(fd, &line))
 	{
 		coord = ft_strsplit(line, ' ');
-		in_map->map[x] = get_z_values(coord, in_map->w);
+		m->map[x] = get_z_values(coord, m->w);
 		free(coord);
 		free(line);
 		i = 0;
-		while (i < in_map->w)
+		while (i < m->w)
 		{
-			if (in_map->map[x][i] > in_map->h_max)
-				in_map->h_max = in_map->map[x][i];
-			else
-				in_map->h_max = in_map->h_max;
+			m->h_max = m->map[x][i] > m->h_max ? m->map[x][i] : m->h_max;
+			m->h_min = m->map[x][i] < m->h_min ? m->map[x][i] : m->h_min;
 			i++;
 		}
+		x++;
 	}
 	close(fd);
 }
@@ -78,7 +77,7 @@ int		find_width(char **coord)
 ** we increment y to get the height
 ** and we call the find width function by incrementing x
 */
-void	find_width_heigth(int fd, t_map *in_map)
+void	find_width_heigth(int fd, t_map *map)
 {
 	int		y;
 	char	*line;
@@ -89,21 +88,21 @@ void	find_width_heigth(int fd, t_map *in_map)
 	{
 		y++;
 		coord = ft_strsplit(line, ' ');
-		in_map->w = find_width(coord);
+		map->w = find_width(coord);
 	}
-	in_map->h = y;
+	map->h = y;
 	free(coord);
 	free(line);
 	close(fd);
 }
 
-void	storing(char *argument, t_map *in_map)
+void	storing(char *argument, t_map *map)
 {
 	int		fd;
 
 	if ((fd = open(argument, O_RDONLY)) == -1)
 		error(0);
-	find_width_heigth(fd, in_map);
+	find_width_heigth(fd, map);
 	fd = open(argument, O_RDONLY);
-	find_z_value(fd, in_map);
+	find_z_value(fd, map);
 }

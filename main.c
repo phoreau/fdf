@@ -35,6 +35,6 @@ int		main(int ac, char **av)
 		error(0);
 	storing(av[1], map);
 	coords = get_info(map);
-	start(coords, map);
+	start(coords);
 	return (0);
 }

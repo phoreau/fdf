@@ -16,10 +16,10 @@ INC_PATH	= ./libft/include/
 LIB_PATH	= ./libft/
 MLX_PATH	= ./minilibx_macos/
 
-CC 			= gcc
+CC 			= gcc -g -Wall -Wextra -Werror
 AR 			= AR
 
-CCFLAGS 	= -g -Wall -Wextra -Werror
+CCFLAGS 	= 
 INC 		= ./includes/fdf.h
 
 LIBFT 		= ./libft
@@ -35,10 +35,11 @@ LIB_M_ALL 	= $(LIBFT_ALL) $(MLX_C_ALL)
 SRCS		= main.c \
 			parse.c \
 			store.c \
-			draw.c \
+			draw_1.c \
+			draw_2.c \
 			start.c \
-			grid.c \
 			environment.c \
+			rotate.c \
 
 INCLUDE 	=   -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 OBJ			=	${SRCS:.c=.o}
