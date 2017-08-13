@@ -48,6 +48,9 @@ typedef struct 		s_values
 	float			threshold;
 	float			adjust;
 	float			delta;
+	float			color;
+	float			tmp;
+	float			range;
 }					t_values;
 
 typedef struct 		s_points
@@ -61,9 +64,9 @@ typedef struct 		s_points
 typedef struct		s_data
 {
 	t_points		**cart;
-	double				x;
-	double				y;
-	double				z;
+	int				x;
+	int				y;
+	int				z;
 	float			x1;
 	float			x2;
 	float			y1;
@@ -77,11 +80,16 @@ typedef struct		s_data
 	int				h_min; // height_min
 	int				h_max;	// height_max
 	int				gap;
+	int				big;
+	int				max;
+	int				smax;
 	int				cur_z;
 	int				next_z;
+	int				season;
 	float			rise;
 	float			run;
 	float			slope; // slope
+	float			fix_right;
 	float			e;
 	void			*mlx;
 	void			*win;
@@ -108,14 +116,13 @@ void				line_negative(t_data *env, int x0, int y0, int x1, int y1);
 void				line_positive(t_data *env, int x0, int y0, int x1, int y1);
 
 void				draw(t_data *info);
-void				vertical_line(t_data *e, int x0, int y0, int x1, int y1);
 t_data				*get_info(t_map *map);
 void				rotate(t_data *info);
+
 void				slope_gradual(t_data *info, t_values *values);
 void				slope_sharp(t_data *info, t_values *values);
 void				slope_straight(t_data *info);
-void 				going_on_x(t_data *info);
-void 				going_on_y(t_data *info);
-void				bres_line(t_data *info);
+
+void				translate(t_data **info);
 
 #endif

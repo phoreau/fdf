@@ -35,20 +35,21 @@
 void			slope_gradual(t_data *info, t_values *values)
 {
 	float		y;
-	float		tmp;
 
 	values->delta = fabsf(info->slope);
 	y = info->y1;
 	if (info->x2 < info->x1)
 	{
-		tmp = info->x2;
+		values->tmp = info->x2;
 		info->x2 = info->x1;
-		info->x1 = tmp;
+		info->x1 = values->tmp;
 		y = info->y2;
 	}
+	values->tmp = info->x1;
+	values->range = (info->x2 - values->tmp);
 	while (info->x1 < info->x2)
 	{
-		mlx_pixel_put(info->mlx, info->win, info->x1, y, 0x00FFFF00);
+		mlx_pixel_put(info->mlx, info->win, info->x1, y, GOLD);
 		values->offset += values->delta;
 		if (values->offset >= values->threshold)
 		{
@@ -80,20 +81,21 @@ void			slope_gradual(t_data *info, t_values *values)
 void			slope_sharp(t_data *info, t_values *values)
 {
 	float		x;
-	float		tmp;
 
 	values->delta = fabsf(info->run / info->rise);
 	x = info->x1;
 	if (info->y2 < info->y1)
 	{
-		tmp = info->y2;
+		values->tmp = info->y2;
 		info->y2 = info->y1;
-		info->y1 = tmp;
+		info->y1 = values->tmp;
 		x = info->x2;
 	}
+	values->tmp = info->y1;
+	values->range = (info->y2 - values->tmp);
 	while (info->y1 < info->y2)
 	{
-		mlx_pixel_put(info->mlx, info->win, x, info->y1, 0x00FFFF00);
+		mlx_pixel_put(info->mlx, info->win, x, info->y1, PURPLE);
 		values->offset += values->delta;
 		if (values->offset >= values->threshold)
 		{
@@ -116,7 +118,7 @@ void			slope_straight(t_data *info)
 	}
 	while (info->y1 <= info->y2)
 	{
-		mlx_pixel_put(info->mlx, info->win, info->x1, info->y1, 0x00FFFF00);
+		mlx_pixel_put(info->mlx, info->win, info->x1, info->y1, SILVER);
 		info->y1++;
 	}
 }

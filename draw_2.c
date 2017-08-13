@@ -12,26 +12,18 @@
 
 #include "./includes/fdf.h"
 
-void	set_bres_values(t_data *info, t_values *values)
-{
-	info->slope = info->rise / info->run;
-	values->adjust = info->slope >= 0 ? 1 : -1;
-	values->threshold = 0.5;
-	values->offset = 0;
-}
-
 void	set_values(t_data **info, int i, int j)
 {
 	(*info)->x1 = round((*info)->cart[i][j].x);
 	(*info)->y1 = round((*info)->cart[i][j].y);
 	(*info)->cur_z = (*info)->cart[i][j].z;
-	if ((j + 1) < (*info)->w)
+	if ((*info)->fix_right == 1 && (j + 1) < (*info)->w)
 	{
 		(*info)->x2 = round((*info)->cart[i][j + 1].x);
 		(*info)->y2 = round((*info)->cart[i][j + 1].y);
 		(*info)->next_z = (*info)->cart[i][j + 1].z;
 	}
-	else if ((i + 1) < (*info)->h)
+	else if ((*info)->fix_right == 0 && (i + 1) < (*info)->h)
 	{
 		(*info)->x2 = round((*info)->cart[i + 1][j].x);
 		(*info)->y2 = round((*info)->cart[i + 1][j].y);
@@ -41,9 +33,18 @@ void	set_values(t_data **info, int i, int j)
 	(*info)->run = ((*info)->x2) - ((*info)->x1);
 }
 
+void	set_bres_values(t_data *info, t_values *values)
+{
+	info->slope = info->rise / info->run;
+	values->adjust = info->slope >= 0 ? 1 : -1;
+	values->threshold = 0.5;
+	values->offset = 0;
+}
+
 void	draw_right(t_data *info, t_values **values)
 {
 	info->i = 0;
+	info->fix_right = 1;
 	while (info->i < info->h)
 	{
 		info->j = 0;
@@ -69,10 +70,11 @@ void	draw_right(t_data *info, t_values **values)
 void	draw_down(t_data *info, t_values **values)
 {
 	info->i = 0;
+	info->fix_right = 0;
 	while (info->i < info->h)
 	{
 		info->j = 0;
-		while (info->j < info->w)
+		while (info->j < info->w  && (info->i + 1) < info->h)
 		{
 			set_values(&info, info->i, info->j);
 			if (info->run == 0)
@@ -96,8 +98,8 @@ void	draw(t_data *info)
 	t_values	*values;
 
 	values = (t_values *)malloc(sizeof(t_values));
-	// rotate(info);
-	// translate(&info);
+	rotate(info);
+	translate(&info);
 	draw_right(info, &values);
 	draw_down(info, &values);
 }

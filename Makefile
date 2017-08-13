@@ -40,6 +40,7 @@ SRCS		= main.c \
 			start.c \
 			environment.c \
 			rotate.c \
+			translate.c \
 
 INCLUDE 	=   -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 OBJ			=	${SRCS:.c=.o}
