@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_3.c                                           :+:      :+:    :+:   */
+/*   draw_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phoreau <phoreau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -74,7 +74,7 @@ void	draw_down(t_data *info, t_values **values)
 	while (info->i < info->h)
 	{
 		info->j = 0;
-		while (info->j < info->w  && (info->i + 1) < info->h)
+		while (info->j < info->w && (info->i + 1) < info->h)
 		{
 			set_values(&info, info->i, info->j);
 			if (info->run == 0)

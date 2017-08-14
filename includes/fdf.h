@@ -38,11 +38,9 @@ typedef struct		s_map
 	int				h_max;
 	int				mid_x;
 	int				mid_y;
-	//float			xpixelloc;
-	//float			ypixelloc;
 }					t_map;
 
-typedef struct 		s_values
+typedef struct		s_values
 {
 	float			offset;
 	float			threshold;
@@ -53,7 +51,7 @@ typedef struct 		s_values
 	float			range;
 }					t_values;
 
-typedef struct 		s_points
+typedef struct		s_points
 {
 	float			x;
 	float			y;
@@ -75,10 +73,10 @@ typedef struct		s_data
 	float			z2;
 	int				i;
 	int				j;
-	int				w; // width
-	int				h; // height
-	int				h_min; // height_min
-	int				h_max;	// height_max
+	int				w;
+	int				h;
+	int				h_min;
+	int				h_max;
 	int				gap;
 	int				big;
 	int				max;
@@ -88,7 +86,7 @@ typedef struct		s_data
 	int				season;
 	float			rise;
 	float			run;
-	float			slope; // slope
+	float			slope;
 	float			fix_right;
 	float			e;
 	void			*mlx;

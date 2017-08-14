@@ -32,9 +32,9 @@
 ** While y increases by the slope
 */
 
-void			slope_gradual(t_data *info, t_values *values)
+void		slope_gradual(t_data *info, t_values *values)
 {
-	float		y;
+	float	y;
 
 	values->delta = fabsf(info->slope);
 	y = info->y1;
@@ -78,9 +78,10 @@ void			slope_gradual(t_data *info, t_values *values)
 ** We draw each pixel such as y increases by 1
 ** While x increases by the slope
 */
-void			slope_sharp(t_data *info, t_values *values)
+
+void		slope_sharp(t_data *info, t_values *values)
 {
-	float		x;
+	float	x;
 
 	values->delta = fabsf(info->run / info->rise);
 	x = info->x1;
@@ -106,9 +107,9 @@ void			slope_sharp(t_data *info, t_values *values)
 	}
 }
 
-void			slope_straight(t_data *info)
+void		slope_straight(t_data *info)
 {
-	float		tmp;
+	float	tmp;
 
 	if (info->y2 < info->y1)
 	{

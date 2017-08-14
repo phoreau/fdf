@@ -12,7 +12,7 @@
 
 #include "./includes/fdf.h"
 
-int		*get_z_values(char **s, int width)
+int			*get_z_values(char **s, int width)
 {
 	int		*map;
 	int		i;
@@ -34,12 +34,13 @@ int		*get_z_values(char **s, int width)
 ** or 1 or 100. so we go through our get next line again and we strsplit to
 ** find get the values of each spot.
 */
-void	find_z_value(int fd, t_map *m)
+
+void		find_z_value(int fd, t_map *m)
 {
 	int		x;
 	int		i;
 	char	*line;
-	char 	**coord;
+	char	**coord;
 
 	x = 0;
 	m->h_max = 0;
@@ -63,7 +64,7 @@ void	find_z_value(int fd, t_map *m)
 	close(fd);
 }
 
-int		find_width(char **coord)
+int			find_width(char **coord)
 {
 	int		x;
 
@@ -77,7 +78,8 @@ int		find_width(char **coord)
 ** we increment y to get the height
 ** and we call the find width function by incrementing x
 */
-void	find_width_heigth(int fd, t_map *map)
+
+void		find_width_heigth(int fd, t_map *map)
 {
 	int		y;
 	char	*line;
@@ -96,7 +98,7 @@ void	find_width_heigth(int fd, t_map *map)
 	close(fd);
 }
 
-void	storing(char *argument, t_map *map)
+void		storing(char *argument, t_map *map)
 {
 	int		fd;
 

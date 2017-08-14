@@ -40,7 +40,7 @@ t_points		**take_in_pts(t_data *data, t_map *map)
 	return (p);
 }
 
-void		my_data(t_data **data, t_map *map)
+void			my_data(t_data **data, t_map *map)
 {
 	(*data)->x1 = 0;
 	(*data)->y1 = 0;
@@ -62,10 +62,11 @@ void		my_data(t_data **data, t_map *map)
 	(*data)->smax = (*data)->max - 450;
 	(*data)->cart = take_in_pts(*data, map);
 	(*data)->mlx = mlx_init();
-	(*data)->win = mlx_new_window((*data)->mlx, (*data)->max, (*data)->smax, "fdf");
+	(*data)->win = mlx_new_window((*data)->mlx,
+		(*data)->max, (*data)->smax, "fdf");
 }
 
-t_data		*get_info(t_map *map)
+t_data			*get_info(t_map *map)
 {
 	t_data		*data;
 

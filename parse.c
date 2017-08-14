@@ -18,7 +18,7 @@ int		parse(char *argument)
 	char	*str;
 
 	if ((str = ft_strstr(argument, ".fdf")) == 0)
-	{	
+	{
 		fd = open(str, O_RDONLY);
 		if (fd == -1)
 			error(0);
