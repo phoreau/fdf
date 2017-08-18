@@ -23,8 +23,13 @@
 ** ++++++++++++++++++++++++++++++++++++++
 */
 
-# define HEIGHT			750
-# define WIDTH			1080
+# define WIN_Y			750
+# define WIN_X			1080
+
+# define KEYPRESS 2
+# define KEYRELEASE 3
+# define KEYPRESSMASK (1L<<0)
+# define KEYRELEASEMASK (1L<<1)
 
 # define KEY_ESCAPE		53
 # define KEY_ENTER		36
@@ -32,6 +37,12 @@
 # define KEY_DOWN		125
 # define KEY_RIGHT		124
 # define KEY_UP			126
+
+# define KEY_PLUS 24
+# define KEY_MINUS 27
+# define PAGE_UP 116
+# define PAGE_DOWN 121
+# define RESET 51
 
 # define GOLD			0x00e19f00
 # define BRIGHTBLUE		0x0000ffec

@@ -32,15 +32,16 @@ MLX_MAC 	= $(MLX_CAP)/$(MLX_A)
 MLX_C_ALL 	= $(MLX_MAC) -framework OpenGL -framework Appkit
 
 LIB_M_ALL 	= $(LIBFT_ALL) $(MLX_C_ALL)
-SRCS		= main.c \
-			parse.c \
-			store.c \
-			draw_1.c \
-			draw_2.c \
-			start.c \
-			environment.c \
-			rotate.c \
-			translate.c \
+SRCS		= src/main.c \
+			src/ft_parse.c \
+			src/ft_store.c \
+			src/ft_draw_1.c \
+			src/ft_draw_2.c \
+			src/ft_start.c \
+			src/ft_environment.c \
+			src/ft_rotate.c \
+			src/ft_translate.c \
+			src/ft_modify_z.c \
 
 INCLUDE 	=   -I fdf.h -L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 OBJ			=	${SRCS:.c=.o}
